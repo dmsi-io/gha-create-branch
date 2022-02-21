@@ -2,6 +2,9 @@ name: 'Create Branch'
 description: 'Creates a branch'
 
 inputs:
+  GITHUB_TOKEN:
+    description: 'GitHub Action Token or PAT'
+    required: true
   branch:
     description: 'The branch to create'
     required: false
