@@ -3,10 +3,11 @@ import { Context } from '@actions/github/lib/context';
 export async function createBranch(
   getOctokit: any,
   context: Context,
+  githubToken: string,
   branch: string,
   sha?: string,
 ) {
-  const toolkit = getOctokit(githubToken());
+  const toolkit = getOctokit(githubToken);
   // Sometimes branch might come in with refs/heads already
   branch = branch.replace('refs/heads/', '');
   const ref = `refs/heads/${branch}`;
@@ -30,10 +31,4 @@ export async function createBranch(
       throw Error(error);
     }
   }
-}
-
-function githubToken(): string {
-  const token = process.env.GITHUB_TOKEN;
-  if (!token) throw ReferenceError('No token defined in the environment variables');
-  return token;
 }
