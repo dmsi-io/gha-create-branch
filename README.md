@@ -4,20 +4,23 @@ This action creates a new branch with the same commit reference as the branch it
 
 ## Inputs
 
-### `branch`
+| NAME           | DESCRIPTION                              | TYPE     | REQUIRED | DEFAULT             |
+| -------------- | ---------------------------------------- | -------- | -------- | ------------------- |
+| `GITHUB_TOKEN` | GitHub Actions Token                     | `string` | `true`   |                     |
+| `branch`       | The name of the branch to create.        | `string` | `false`  | `release-candidate` |
+| `sha`          | The SHA1 value for the branch reference. | `string` | `false`  |                     |
 
-**Optional** The name of the branch to create. Default `"release-candidate"`.
+## Outputs
 
-### `sha`
-
-**Optional** The SHA1 value for the branch reference.
+| NAME      | DESCRIPTION                                                         | TYPE   |
+| --------- | ------------------------------------------------------------------- | ------ |
+| `created` | Boolean value representing whether or not a new branch was created. | `bool` |
 
 ## Example usage
 
 ```
-uses: peterjgrainger/action-create-branch@v2.0.1
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+uses: dmsi-io/gha-create-branch@main
 with:
   branch: 'release-notes'
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 ```
