@@ -5,8 +5,9 @@
   "description": "JavaScript template action",
   "main": "dist/index.js",
   "scripts": {
-    "build": "ncc build ./src/main.ts -o dist/",
-    "test": "jest"
+    "build": "ncc build ./src/main.ts -o dist/ --minify",
+    "test": "jest",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -17,18 +18,28 @@
     "node",
     "setup"
   ],
-  "author": "YourNameOrOrganization",
+  "author": "dmsi-io",
   "license": "MIT",
   "dependencies": {
     "@actions/core": "1.6.0",
     "@actions/github": "5.0.0"
   },
+  "lint-staged": {
+    "*.{js,css,json,md,ts,tsx}": [
+      "prettier --write"
+    ]
+  },
+  "prettier": "@dmsi/prettier-config",
   "devDependencies": {
+    "@dmsi/prettier-config": "^1.3.0",
     "@types/jest": "27.0.3",
     "@types/node": "17.0.12",
-    "@zeit/ncc": "^0.22.3",
+    "@vercel/ncc": "^0.33.3",
+    "husky": "^7.0.4",
     "jest": "27.4.7",
     "jest-circus": "27.4.6",
+    "lint-staged": "^12.3.4",
+    "prettier": "^2.5.1",
     "ts-jest": "27.1.2",
     "typescript": "4.5.5"
   }

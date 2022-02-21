@@ -1,5 +1,5 @@
 import * as core from '@actions/core';
-import { getOctokit, context} from '@actions/github'
+import { getOctokit, context } from '@actions/github';
 import { createBranch } from './create-branch';
 
 async function run() {
@@ -7,8 +7,10 @@ async function run() {
     const branch = core.getInput('branch');
     const sha = core.getInput('sha');
     core.debug(`Creating branch ${branch}`);
-    await createBranch(getOctokit, context, branch, sha)
+    const isCreated = await createBranch(getOctokit, context, branch, sha);
+    core.setOutput('created', Boolean(isCreated));
   } catch (error: any) {
+    core.setOutput('created', false);
     core.setFailed(error.message);
   }
 }
