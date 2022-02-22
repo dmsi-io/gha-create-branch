@@ -1,0 +1,20 @@
+name: 'PR Test Run'
+on: [pull_request]
+
+jobs:
+  check_pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test gha-create-branch
+        id: branch
+        uses: dmsi-io/gha-create-branch@feature/HOU-166
+        with:
+          GITHUB_TOKEN: ${{ secrets.PUBLIC_GHA_ACCESS_TOKEN }}
+
+      - name: Print if true
+        if: steps.branch.outputs.created == 'true'
+        run: echo "Successfully created branch."
+
+      - name: Print if false
+        if: steps.branch.outputs.created == 'false'
+        run: echo "Failed to create branch"
