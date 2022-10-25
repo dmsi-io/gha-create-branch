@@ -7,7 +7,7 @@
   "scripts": {
     "build": "ncc build ./src/main.ts -o dist/ --minify",
     "test": "jest",
-    "prepare": "husky install"
+    "postinstall": "husky install"
   },
   "repository": {
     "type": "git",
@@ -21,8 +21,8 @@
   "author": "dmsi-io",
   "license": "MIT",
   "dependencies": {
-    "@actions/core": "1.6.0",
-    "@actions/github": "5.0.0"
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.1"
   },
   "lint-staged": {
     "*.{js,css,json,md,ts,tsx}": [

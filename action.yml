@@ -18,5 +18,5 @@ outputs:
     description: 'Boolean value representing whether or not a new branch was created.'
 
 runs:
-  using: 'node18'
+  using: 'node16'
   main: 'dist/index.js'
